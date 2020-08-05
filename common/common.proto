@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package  rlleague;
+
+message Agent {
+    int64 agent_id = 1;
+
+    // TODO(sturdyplum) figure out how to transmit network info. Maybe a shared 
+    // database is the best way to handle this.
+    int32 agent_elo = 2; 
+}
+
+message Game {
+    // Incase there are games with more than two players in some future this is
+    // a repeated field. 
+    repeated Agent agents = 1;
+}
+
+message GameResult {
+    // List ordered by placment. 
+    repeated Agent ranked_agents = 1; 
+}

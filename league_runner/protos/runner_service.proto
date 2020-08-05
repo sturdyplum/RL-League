@@ -1,6 +1,10 @@
-// Service that will be the main api for the league runner service. 
-
 syntax = "proto3";
+
+// Service that will be the main api for the league runner service. 
+import "google/protobuf/empty.proto";
+import "common.proto";
+
+package  rlleague;
 
 service LeagueRunner {
     // Will rqeuest a set of agents to run games for. Any given main agent 
@@ -17,10 +21,9 @@ service LeagueRunner {
 
     // Used to report the results of playing all the games in a GameReponse 
     // (along with any updated network for main agents).
-    rpc ReportResults (ReportRequest) returns (ReportResult) {}
+    rpc ReportResults (ReportRequest) returns (google.protobuf.Empty) {}
 }
 
-// Used to request a set of agents.
 message AgentRequest {
     // TODO(sturdyplum) how to authenticate this request.
     
@@ -44,4 +47,9 @@ message GameRequest {
 message GameResponse {
     // List of games that game runner should run.
     repeated Game games = 1;
+}
+
+message ReportRequest {
+    // Results of games.
+    repeated GameResult results = 1;
 }
