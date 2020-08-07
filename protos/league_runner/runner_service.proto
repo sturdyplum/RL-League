@@ -2,9 +2,7 @@ syntax = "proto3";
 
 // Service that will be the main api for the league runner service. 
 import "google/protobuf/empty.proto";
-import "common.proto";
-
-package  rlleague;
+import "shared/games.proto";
 
 service LeagueRunner {
     // Will rqeuest a set of agents to run games for. Any given main agent 
@@ -14,7 +12,7 @@ service LeagueRunner {
     // TODO(sturdyplum) Maybe the best idea would be to let multiple people 
     // train a main agent at once but only keep the best as the main agent and 
     // make the rest copies. 
-    rpc RequeustAgents (AgentRequest) returns (AgentResponse) {}
+    rpc RequestAgents (AgentRequest) returns (AgentResponse) {}
 
     // Will return a list of games to play. 
     rpc RequestGames (GameRequest) returns (GameResponse) {}

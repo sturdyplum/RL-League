@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-package  rlleague;
-
 message Agent {
     int64 agent_id = 1;
 
