@@ -1,0 +1,11 @@
+# pycache
+__pycache__
+
+# VSCode
+.vscode
+
+# Virtualenv
+lib
+bin
+include
+.Python
