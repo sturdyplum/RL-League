@@ -3,7 +3,7 @@
 import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-from league_runner import runner_service_pb2 as league__runner_dot_runner__service__pb2
+from rlleague.league_runner import runner_service_pb2 as rlleague_dot_league__runner_dot_runner__service__pb2
 
 
 class LeagueRunnerStub(object):
@@ -17,17 +17,17 @@ class LeagueRunnerStub(object):
         """
         self.RequestAgents = channel.unary_unary(
                 '/LeagueRunner/RequestAgents',
-                request_serializer=league__runner_dot_runner__service__pb2.AgentRequest.SerializeToString,
-                response_deserializer=league__runner_dot_runner__service__pb2.AgentResponse.FromString,
+                request_serializer=rlleague_dot_league__runner_dot_runner__service__pb2.AgentRequest.SerializeToString,
+                response_deserializer=rlleague_dot_league__runner_dot_runner__service__pb2.AgentResponse.FromString,
                 )
         self.RequestGames = channel.unary_unary(
                 '/LeagueRunner/RequestGames',
-                request_serializer=league__runner_dot_runner__service__pb2.GameRequest.SerializeToString,
-                response_deserializer=league__runner_dot_runner__service__pb2.GameResponse.FromString,
+                request_serializer=rlleague_dot_league__runner_dot_runner__service__pb2.GameRequest.SerializeToString,
+                response_deserializer=rlleague_dot_league__runner_dot_runner__service__pb2.GameResponse.FromString,
                 )
         self.ReportResults = channel.unary_unary(
                 '/LeagueRunner/ReportResults',
-                request_serializer=league__runner_dot_runner__service__pb2.ReportRequest.SerializeToString,
+                request_serializer=rlleague_dot_league__runner_dot_runner__service__pb2.ReportRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
 
@@ -68,17 +68,17 @@ def add_LeagueRunnerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'RequestAgents': grpc.unary_unary_rpc_method_handler(
                     servicer.RequestAgents,
-                    request_deserializer=league__runner_dot_runner__service__pb2.AgentRequest.FromString,
-                    response_serializer=league__runner_dot_runner__service__pb2.AgentResponse.SerializeToString,
+                    request_deserializer=rlleague_dot_league__runner_dot_runner__service__pb2.AgentRequest.FromString,
+                    response_serializer=rlleague_dot_league__runner_dot_runner__service__pb2.AgentResponse.SerializeToString,
             ),
             'RequestGames': grpc.unary_unary_rpc_method_handler(
                     servicer.RequestGames,
-                    request_deserializer=league__runner_dot_runner__service__pb2.GameRequest.FromString,
-                    response_serializer=league__runner_dot_runner__service__pb2.GameResponse.SerializeToString,
+                    request_deserializer=rlleague_dot_league__runner_dot_runner__service__pb2.GameRequest.FromString,
+                    response_serializer=rlleague_dot_league__runner_dot_runner__service__pb2.GameResponse.SerializeToString,
             ),
             'ReportResults': grpc.unary_unary_rpc_method_handler(
                     servicer.ReportResults,
-                    request_deserializer=league__runner_dot_runner__service__pb2.ReportRequest.FromString,
+                    request_deserializer=rlleague_dot_league__runner_dot_runner__service__pb2.ReportRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
     }
@@ -102,8 +102,8 @@ class LeagueRunner(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/LeagueRunner/RequestAgents',
-            league__runner_dot_runner__service__pb2.AgentRequest.SerializeToString,
-            league__runner_dot_runner__service__pb2.AgentResponse.FromString,
+            rlleague_dot_league__runner_dot_runner__service__pb2.AgentRequest.SerializeToString,
+            rlleague_dot_league__runner_dot_runner__service__pb2.AgentResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -118,8 +118,8 @@ class LeagueRunner(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/LeagueRunner/RequestGames',
-            league__runner_dot_runner__service__pb2.GameRequest.SerializeToString,
-            league__runner_dot_runner__service__pb2.GameResponse.FromString,
+            rlleague_dot_league__runner_dot_runner__service__pb2.GameRequest.SerializeToString,
+            rlleague_dot_league__runner_dot_runner__service__pb2.GameResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -134,7 +134,7 @@ class LeagueRunner(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/LeagueRunner/ReportResults',
-            league__runner_dot_runner__service__pb2.ReportRequest.SerializeToString,
+            rlleague_dot_league__runner_dot_runner__service__pb2.ReportRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
