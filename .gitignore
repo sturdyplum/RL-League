@@ -11,3 +11,4 @@ include
 .Python
 .cpython
 .pyc
+.cpython-38.pyc
