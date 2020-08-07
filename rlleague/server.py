@@ -1,6 +1,6 @@
 import grpc
-import rlleague.league_runner.runner_service_pb2 as RunnerProtos
-import rlleague.league_runner.runner_service_pb2_grpc as RunnerService
+import league_runner.runner_service_pb2 as RunnerProtos
+import league_runner.runner_service_pb2_grpc as RunnerService
 from concurrent import futures
 
 class LeagueRunner(RunnerService.LeagueRunnerServicer):
