@@ -8,7 +8,15 @@ __pycache__
 lib
 bin
 include
+
+# Miscellaneous
 .Python
 .cpython
 .pyc
 .cpython-38.pyc
+
+# Package generation
+*.egg-info
+
+# Built proto files
+proto_api
