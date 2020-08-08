@@ -1,6 +1,7 @@
 import grpc
-import rlleague.league_runner.runner_service_pb2_grpc as RunnerService
-import rlleague.league_runner.runner_service_pb2 as RunnerProtos
+
+from proto_api.league_runner import runner_service_pb2_grpc as RunnerService
+from proto_api.league_runner import runner_service_pb2 as RunnerProtos
 
 
 def run():

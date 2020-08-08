@@ -2,7 +2,7 @@ syntax = "proto3";
 
 // Service that will be the main api for the league runner service. 
 import "google/protobuf/empty.proto";
-import "rlleague/shared/games.proto";
+import "proto_api/shared/games.proto";
 
 service LeagueRunner {
     // Will rqeuest a set of agents to run games for. Any given main agent 
