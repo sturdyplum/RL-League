@@ -1,27 +1,27 @@
 import grpc
-from proto_api.league_runner import runner_service_pb2 as RunnerProtos
-from proto_api.league_runner import runner_service_pb2_grpc as RunnerService
+
 from concurrent import futures
+from .league_runner import league_runner
+from proto_api.league_runner import runner_service_pb2_grpc as RunnerService
+from proto_api.shared.games_pb2 import Agent
 
-class LeagueRunner(RunnerService.LeagueRunnerServicer):
-    num_agents = 10
 
-    def RequestAgents(
-            self, request: RunnerProtos.AgentRequest, context):
-        if self.num_agents < request.number_of_agents:
-            return grpc.Status(grpc.StatusCode.FAILED_PRECONDITION,
-                               "Requested more agents than are available.")
-        response = RunnerProtos.AgentResponse()
-        response.uuid = 7
-        return response 
-
-def serve():
+def serve(agents):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=5))
-    RunnerService.add_LeagueRunnerServicer_to_server(LeagueRunner(), server)
+    RunnerService.add_LeagueRunnerServicer_to_server(
+        league_runner.LeagueRunner(agents), server)
     server.add_insecure_port('[::]:50051')
+    print("Starting server")
     server.start()
     server.wait_for_termination()
 
 
 if __name__ == '__main__':
-    serve()
+    agents = []
+    for i in range(10):
+        agent = Agent()
+        agent.id = i
+        agent.elo = 1500
+        agents.append(agent)
+    
+    serve(agents)
