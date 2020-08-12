@@ -1,6 +1,7 @@
 import abc
 import asyncio
 import random
+import uuid
 
 from proto_api.shared.games_pb2 import Agent
 
@@ -30,12 +31,12 @@ class AgentManagerInterface(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractclassmethod
-    def get_agent(self, agent_id: int):
+    def get_agent(self, agent_id: str):
         """ Returns an instance of the agent with id `agent_id`. """
         raise NotImplementedError
 
     @abc.abstractclassmethod
-    def update_agent(self, agent_id: int, new_agent: Agent):
+    def update_agent(self, agent_id: str, new_agent: Agent):
         """ Updates the agent with id `agent_id` to `new_agent` """
         raise NotImplementedError
 
@@ -79,12 +80,12 @@ class InMemoryAgentManager(AgentManagerInterface):
             for agent in agents:
                 self.free_agents.add(agent)
 
-    def get_agent(self, agent_id: int):
+    def get_agent(self, agent_id: str):
         if agent_id not in self.agents:
             raise KeyError
         return self.agents[agent_id]
 
-    def update_agent(self, agent_id: int, agent: Agent):
+    def update_agent(self, agent_id: str, agent: Agent):
         if agent_id not in self.agents:
             raise KeyError
         self.agents[agent_id] = agent

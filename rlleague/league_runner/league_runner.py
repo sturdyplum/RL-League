@@ -1,5 +1,6 @@
 import grpc
 import random
+import uuid
 
 from proto_api.league_runner import runner_service_pb2 as RunnerProtos
 from proto_api.league_runner import runner_service_pb2_grpc as RunnerService
@@ -27,11 +28,9 @@ class LeagueRunner(RunnerService.LeagueRunnerServicer):
 
     """ Gets a unique id for an agent and then inserts it into the uuid map. """
     def get_unique_id(self):
-        uuid = random.randint(0, 1_000_000_000)
-        while uuid in self.uuid_to_agents:
-            uuid = random.randint(0, 1_000_000_000)
-            self.uuid_to_agents[uuid] = []
-        return uuid
+        new_uuid = uuid.uuid4().hex
+        self.uuid_to_agents[new_uuid] = []
+        return new_uuid
 
     # TODO(sturdyplum) Currently this is random but there should be a smarter 
     # way of doing this to make sure things are balanced.
