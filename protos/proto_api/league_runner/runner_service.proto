@@ -34,12 +34,12 @@ message AgentResponse {
     repeated Agent agents = 1;
 
     // id that will be used to keep track of client. 
-    int64 uuid = 2;
+    string uuid = 2;
 }
 
 message GameRequest {
     // id recived during a RequestAgents.
-    int64 uuid = 2;
+    string uuid = 2;
 }
 
 message GameResponse {

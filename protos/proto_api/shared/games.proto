@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 message Agent {
-    int64 id = 1;
+    string uuid = 1;
 
     // TODO(sturdyplum) figure out how to transmit network info. Maybe a shared 
     // database is the best way to handle this.
