@@ -1,7 +1,6 @@
 import abc
 import asyncio
 import random
-import uuid
 
 from proto_api.shared.games_pb2 import Agent
 
