@@ -64,33 +64,33 @@ class InMemoryAgentManager(AgentManagerInterface):
         """
         Since this is a testing class the agents will be randomly picked.
         """
-        async with self.lock:
-            res = []
-            if n > len(self.free_agents):
-                return res
-            for _ in range(n):
-                agent = random.choice(self.free_agents)
-                self.free_agents.remove(agent)
-                res.append(agent)
+        #with self.lock:
+        res = []
+        if n > len(self.free_agents):
             return res
+        for _ in range(n):
+            agent = random.choice(self.free_agents)
+            self.free_agents.remove(agent)
+            res.append(agent)
+        return res
 
     def release_agents(self, agents: [Agent]):
-        async with self.lock:
-            for agent in agents:
-                self.free_agents.add(agent)
+        #with self.lock:
+        for agent in agents:
+            self.free_agents.add(agent)
 
     def get_agent(self, agent_id: int):
         if agent_id not in self.agents:
             raise KeyError
-        return self.agents[agent_id]
+        return self.agents.get(agent_id)
 
     def update_agent(self, agent_id: int, agent: Agent):
         if agent_id not in self.agents:
             raise KeyError
-        self.agents[agent_id] = agent
+        self.agents.update(agent_id, agent) 
 
     def report_result(self, agent_ids: [int], result: int):
-        agent_elos = [self.agents[agent_id].elo for agent_id in agent_ids]
+        agent_elos = [self.agents.get(agent_id).elo for agent_id in agent_ids]
         new_elos = self.elo_manager.get_new_elos(agent_elos, result)
         for new_elo, agent_id in zip(new_elos, agent_ids):
-            self.agents[agent_id].elo = new_elo
+            self.agents.get(agent_id).elo = new_elo
